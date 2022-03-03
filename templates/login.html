@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'auth_style.css' %}">
+{% endblock %}
+
+{% block title %} | Login{% endblock %}
+{% block body %}
+    <section class="input-form-sect">
+        <div class="input-form-arr">
+            <div class='title'>Login</div>
+            <form class="input-form" action="" method="post">
+                {% csrf_token %}
+                <input type="text" required placeholder="Username" name="username" class="input" id="username">
+                <input type="password" required placeholder="Password" name="password" class="input" id="password">
+                <button type="submit" class="subBtn" id="subBtn">Login</button>
+            </form>
+            <div class="alt-prompt">
+                Not Yet Registered? <a href="{% url 'Main:Register' %}">Sign Up Here</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
