@@ -25,7 +25,7 @@
             <div class="subtitle">{{article.subtitle}} <span class="date">{{article.date_published}}</span></div>
             <div class="body">{{article.summary_intro}}<span style="color: rgba(0, 0, 0, 0.562);">.....</span></div>
             <div class="anchors">
-                <a href="" class="anchor-link">View Article</a>
+                <a href="{% url 'Main:Article' %}" class="anchor-link">View Article</a>
                 {% if article.owner == request.user %}
                     <a href="" class="anchor-link">Edit Post</a>
                     <a href="" class="anchor-link">Delete Post</a>

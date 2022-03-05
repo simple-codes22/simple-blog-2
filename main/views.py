@@ -45,3 +45,6 @@ def logout_page(request, *args, **kwargs):
     logout(request)
     print(request.user)
     return redirect('Main:HomePage')
+
+def view_page(request, *args, **kwargs):
+    return render(request, 'view.html')

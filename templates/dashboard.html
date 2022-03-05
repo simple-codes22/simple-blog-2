@@ -9,4 +9,29 @@
 {% block title %} | Dashboard{% endblock %}
 
 {% block body %}
+    <nav class='nav-bar'>
+        <a href="{% url 'Main:HomePage' %}" class="nav-item">Home</a>
+        <a href="{% url 'Main:Logout' %}" class="nav-item">Logout</a>
+    </nav>
+    <section>
+        <div class="create-new-article">
+            <div class="main-title">Create/Update Post</div>
+
+                <div>
+                    <div class="set-info">
+                        Title: <input type="text" name="title" />
+                </div>
+                    <div class="set-info">
+                        Subtitle: <input type="text" name="subtitle" />
+                    </div>
+                    <div class="set-info">
+                        Introduction: <input type="text" name="introduction" />
+                    </div>
+                    <div class="set-info" id="textarea-part">
+                        Body: <textarea rows="6" draggable="false"></textarea>
+                    </div>
+                </div>
+                <button>Post</button>
+        </div>
+    </section>
 {% endblock %}
