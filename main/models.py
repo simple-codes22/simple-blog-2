@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 class article(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    article_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True, blank=False)
     title = models.CharField(unique=True, max_length=700, blank=False, editable=True)
     subtitle = models.TextField(unique=True, blank=True, editable=True)
     summary_intro = models.TextField(verbose_name="Introduction", max_length=500, unique=True, null=False, blank=False, editable=True, default='')

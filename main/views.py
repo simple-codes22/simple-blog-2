@@ -46,5 +46,6 @@ def logout_page(request, *args, **kwargs):
     print(request.user)
     return redirect('Main:HomePage')
 
-def view_page(request, *args, **kwargs):
-    return render(request, 'view.html')
+def view_page(request, article_id, *args, **kwargs):
+    individual_article = article.objects.get(article_id=article_id)
+    return render(request, 'view.html', {'article_detail': individual_article})
