@@ -24,9 +24,17 @@
         </div>
         <div class="article-subtitle">
             {{article_detail.subtitle}}
+            <span class="article-date-pub">
+                {{article_detail.date_published}}
+            </span>
+            {% if request.user == article_detail.owner %}
+            <div class="article-date-pub">
+                Date modified by you: {{article_detail.date_modified}}
+            </div>
+            {% endif %}
         </div>
         <div class="article-body">
+            {{article_detail.body}}
         </div>
-
     </section>
 {% endblock %}

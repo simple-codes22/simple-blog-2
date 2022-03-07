@@ -38,6 +38,8 @@ def register_page(request, *args, **kwargs):
 
 @login_required(login_url='Main:Login')
 def dashboard_page(request, *args, **kwargs):
+    if request.method == 'POST':
+        pass
     return render(request, 'dashboard.html')
 
 @login_required(login_url='Main:Login')
@@ -49,3 +51,11 @@ def logout_page(request, *args, **kwargs):
 def view_page(request, article_id, *args, **kwargs):
     individual_article = article.objects.get(article_id=article_id)
     return render(request, 'view.html', {'article_detail': individual_article})
+
+@login_required(login_url='Main:Login')
+def delete_article(request, article_id, *args, **kwargs):
+    try:
+        article.objects.delete(article_id=article_id)
+        return redirect('Main:HomePage')
+    except Exception:
+        return redirect('Main:HomePage')

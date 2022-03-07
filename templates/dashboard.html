@@ -1,37 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
-{% load static %}
+{% load static %} 
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'dash_style.css' %}" />
 {% endblock %}
-
-{% block title %} | Dashboard{% endblock %}
+{% block title %} | Dashboard{% endblock %} 
 
 {% block body %}
-    <nav class='nav-bar'>
+    <nav class="nav-bar">
         <a href="{% url 'Main:HomePage' %}" class="nav-item">Home</a>
         <a href="{% url 'Main:Logout' %}" class="nav-item">Logout</a>
     </nav>
     <section>
-        <div class="create-new-article">
-            <div class="main-title">Create/Update Post</div>
+            <div class="create-new-article">
+                <div class="main-title">Create/Update Post</div>
+                <div class="set-main">
+                        <div class="set-info">
+                            <label>Title:</label> <input type="text" name="title" />
+                        </div>
+                        <div class="set-info">
+                            <label>Subtitle:</label> <input type="text" name="subtitle" />
+                        </div>
+                        <div class="set-info">
+                            <label>Introduction:</label> <input type="text" name="introduction" />
+                        </div>
+                        <div class="set-info" id="textarea-part">
+                            <label>Body:</label> <textarea rows="6" draggable="false"></textarea>
+                        </div>
+                </div>
+                <button class="Submit-btn">Post</button>
+            </div>
+        </section>
 
-                <div>
-                    <div class="set-info">
-                        Title: <input type="text" name="title" />
-                </div>
-                    <div class="set-info">
-                        Subtitle: <input type="text" name="subtitle" />
-                    </div>
-                    <div class="set-info">
-                        Introduction: <input type="text" name="introduction" />
-                    </div>
-                    <div class="set-info" id="textarea-part">
-                        Body: <textarea rows="6" draggable="false"></textarea>
-                    </div>
-                </div>
-                <button>Post</button>
-        </div>
-    </section>
 {% endblock %}
