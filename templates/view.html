@@ -10,7 +10,7 @@
     <nav class='nav-bar'>
         {% if request.user.is_authenticated %}
             <a href="{% url 'Main:HomePage' %}" class="nav-item">Home</a>
-            <a href="{% url 'Main:Dashboard' %}" class="nav-item">Dashboard</a>
+            <a href="{% url 'Main:Dashboard' 'new-article' %}" class="nav-item">Dashboard</a>
             <a href="{% url 'Main:Logout' %}" class="nav-item">Logout</a>
         {% else %}
             <a href="{% url 'Main:HomePage' %}" class="nav-item">Home</a>
