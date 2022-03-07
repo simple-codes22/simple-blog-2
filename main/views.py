@@ -15,7 +15,7 @@ def login_page(request, *args, **kwargs):
             login(request, logged_user) if logged_user is not None else print('Error Logging in, logged user produced:', logged_user)
         except Exception:
             return 
-        return redirect('Main:Dashboard')
+        return redirect('Main:HomePage')
     return render(request, 'login.html')
 
 def register_page(request, *args, **kwargs):
@@ -37,21 +37,36 @@ def register_page(request, *args, **kwargs):
     return render(request, 'register.html')
 
 @login_required(login_url='Main:Login')
-def dashboard_page(request, *args, **kwargs):
+def dashboard_page(request, article_id, *args, **kwargs):
     if request.method == 'POST':
-        try:
-            article.objects.create(
-                owner=request.user,
-                title=request.POST['title'],
-                subtitle=request.POST['subtitle'],
-                summary_intro= request.POST['introduction'],
-                body=request.POST['body']
-            )
-            print('Article Posted')
-            return redirect('Main:HomePage')
-        except Exception:
-            print(Exception)
-    return render(request, 'dashboard.html')
+        if article_id != 'new-article':
+            try:
+                article.objects.filter(article_id=article_id).update(
+                    title=request.POST['title'],
+                    subtitle=request.POST['subtitle'],
+                    summary_intro= request.POST['introduction'],
+                    body=request.POST['body']
+                )
+                print('Article Updated Successfuly')
+                return redirect('Main:HomePage')
+            except Exception:
+                print(Exception)
+        else:
+            try:
+                article.objects.create(
+                    owner=request.user,
+                    title=request.POST['title'],
+                    subtitle=request.POST['subtitle'],
+                    summary_intro= request.POST['introduction'],
+                    body=request.POST['body']
+                )
+                print('Article Created Successfuly')
+                return redirect('Main:HomePage')
+            except Exception:
+                print(Exception)
+    return render(request, 'dashboard.html', {
+        'article': article_id if article_id == 'new-article' else article.objects.get(article_id=article_id)
+    })
 
 @login_required(login_url='Main:Login')
 def logout_page(request, *args, **kwargs):

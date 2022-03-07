@@ -17,21 +17,45 @@
             {% csrf_token %}
             <div class="create-new-article">
                 <div class="main-title">Create/Update Post</div>
+                {% if article != 'new-article' %}
+                    <div class="set-main">
+                            <div class="set-info">
+                                <label>Title:</label> <input required type="text" name="title" value="{{article.title}}" />
+                            </div>
+                            <div class="set-info">
+                                <label>Subtitle:</label> <input required type="text" name="subtitle" value="{{article.subtitle}}" />
+                            </div>
+                            <div class="set-info">
+                                <label>Introduction:</label> 
+                                <textarea required name="introduction" placeholder="Maximum length: 500" maxlength="500">
+                                    {{article.summary_intro}}
+                                </textarea>
+                            </div>
+                            <div class="set-info" id="textarea-part">
+                                <label>Body:</label> 
+                                <textarea rows="6" required name="body">
+                                    {{article.body}}
+                                </textarea>
+                            </div>
+                    </div>
+                    <button class="Submit-btn">Update</button>
+                {% else%}
                 <div class="set-main">
-                        <div class="set-info">
-                            <label>Title:</label> <input required type="text" name="title" />
-                        </div>
-                        <div class="set-info">
-                            <label>Subtitle:</label> <input required type="text" name="subtitle" />
-                        </div>
-                        <div class="set-info">
-                            <label>Introduction:</label> <textarea required name="introduction" placeholder="Maximum length: 500" maxlength="500"></textarea>
-                        </div>
-                        <div class="set-info" id="textarea-part">
-                            <label>Body:</label> <textarea rows="6" required name="body"></textarea>
-                        </div>
+                    <div class="set-info">
+                        <label>Title:</label> <input required type="text" name="title" />
+                    </div>
+                    <div class="set-info">
+                        <label>Subtitle:</label> <input required type="text" name="subtitle" />
+                    </div>
+                    <div class="set-info">
+                        <label>Introduction:</label> <textarea required name="introduction" placeholder="Maximum length: 500" maxlength="500"></textarea>
+                    </div>
+                    <div class="set-info" id="textarea-part">
+                        <label>Body:</label> <textarea rows="6" required name="body"></textarea>
+                    </div>
                 </div>
-                <button class="Submit-btn">Post</button>
+                <button class="Submit-btn">Create</button>
+                {% endif%}
             </div>
         </form>
     </section>
