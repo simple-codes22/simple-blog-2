@@ -22,6 +22,7 @@ a.nav-item:hover {
     display: flex;
     justify-content: center;
     padding: 10px;
+    flex-wrap: wrap;
 }
 div.article {
     display: flex;

@@ -28,7 +28,7 @@
                 <a href="{% url 'Main:Article' article.article_id %}" class="anchor-link">View Article</a>
                 {% if article.owner == request.user %}
                     <a href="" class="anchor-link">Edit Post</a>
-                    <a href="" class="anchor-link">Delete Post</a>
+                    <a href="{% url 'Main:Delete' article.article_id %}" class="anchor-link">Delete Post</a>
                 {% endif %}
             </div>
         </div>

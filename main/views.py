@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 
 def home_page(request, *args, **kwargs):
-    articles = article.objects.all()
+    articles = article.objects.order_by('-date_published')
     return render(request, 'index.html', {'articles': articles})
 
 def login_page(request, *args, **kwargs):
@@ -39,7 +39,18 @@ def register_page(request, *args, **kwargs):
 @login_required(login_url='Main:Login')
 def dashboard_page(request, *args, **kwargs):
     if request.method == 'POST':
-        pass
+        try:
+            article.objects.create(
+                owner=request.user,
+                title=request.POST['title'],
+                subtitle=request.POST['subtitle'],
+                summary_intro= request.POST['introduction'],
+                body=request.POST['body']
+            )
+            print('Article Posted')
+            return redirect('Main:HomePage')
+        except Exception:
+            print(Exception)
     return render(request, 'dashboard.html')
 
 @login_required(login_url='Main:Login')
@@ -55,7 +66,8 @@ def view_page(request, article_id, *args, **kwargs):
 @login_required(login_url='Main:Login')
 def delete_article(request, article_id, *args, **kwargs):
     try:
-        article.objects.delete(article_id=article_id)
+        article_to_delete = article.objects.get(article_id=article_id)
+        article_to_delete.delete()
         return redirect('Main:HomePage')
     except Exception:
         return redirect('Main:HomePage')

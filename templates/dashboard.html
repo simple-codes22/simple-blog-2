@@ -13,24 +13,27 @@
         <a href="{% url 'Main:Logout' %}" class="nav-item">Logout</a>
     </nav>
     <section>
+        <form action="" method="post">
+            {% csrf_token %}
             <div class="create-new-article">
                 <div class="main-title">Create/Update Post</div>
                 <div class="set-main">
                         <div class="set-info">
-                            <label>Title:</label> <input type="text" name="title" />
+                            <label>Title:</label> <input required type="text" name="title" />
                         </div>
                         <div class="set-info">
-                            <label>Subtitle:</label> <input type="text" name="subtitle" />
+                            <label>Subtitle:</label> <input required type="text" name="subtitle" />
                         </div>
                         <div class="set-info">
-                            <label>Introduction:</label> <input type="text" name="introduction" />
+                            <label>Introduction:</label> <textarea required name="introduction" placeholder="Maximum length: 500" maxlength="500"></textarea>
                         </div>
                         <div class="set-info" id="textarea-part">
-                            <label>Body:</label> <textarea rows="6" draggable="false"></textarea>
+                            <label>Body:</label> <textarea rows="6" required name="body"></textarea>
                         </div>
                 </div>
                 <button class="Submit-btn">Post</button>
             </div>
-        </section>
+        </form>
+    </section>
 
 {% endblock %}
