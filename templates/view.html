@@ -45,7 +45,10 @@
                         <a href="{% url 'Main:Delete' article_detail.article_id %}" class="anchor-link">Delete Post</a>
                     </div>
                 {% else %}
-                    By {{ article_detail.owner.first_name }} {{ article_detail.owner.last_name }} @{{article_detail.owner.username}}
+                    By {{ article_detail.owner.first_name }} {{ article_detail.owner.last_name }} 
+                    <div class="article-owner-username anchor-link" title="{{ article_detail.owner.first_name }} {{ article_detail.owner.last_name }}'s Username">
+                        @{{article_detail.owner.username}}
+                    </div>
                 {% endif %}
             </div>
         </div>

@@ -114,6 +114,10 @@ div.article-date-pub {
     margin: 10px 0px !important;
     font-size: 16px !important;
 }
+.article-owner-username {
+    color:rgba(65, 122, 175, 0.897);
+    cursor: pointer;
+}
 
 @keyframes intro {
     from {opacity: 0;}
