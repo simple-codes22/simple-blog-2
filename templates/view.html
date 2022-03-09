@@ -19,22 +19,35 @@
         {% endif %}
     </nav>
     <section class="Article-detail">
-        <div class="article-title">
-            {{article_detail.title}}
-        </div>
-        <div class="article-subtitle">
-            {{article_detail.subtitle}}
-            <span class="article-date-pub">
-                {{article_detail.date_published}}
-            </span>
-            {% if request.user == article_detail.owner %}
-            <div class="article-date-pub">
-                Date modified by you: {{article_detail.date_modified}}
+        <div>
+            <div class="article-title">
+                {{article_detail.title}}
             </div>
-            {% endif %}
-        </div>
-        <div class="article-body">
-            {{article_detail.body}}
+            <div class="article-subtitle">
+                {{article_detail.subtitle}}
+                <span class="article-date-pub">
+                    {{article_detail.date_published}}
+                </span>
+                {% if request.user == article_detail.owner %}
+                <div class="article-date-pub">
+                    Date modified by you: {{article_detail.date_modified}}
+                </div>
+                {% endif %}
+            </div>
+            <div class="article-body">
+                {{article_detail.body}}
+            </div>
+            <div class="article-author">
+                {% if article_detail.owner == request.user %}
+                    Author: You
+                    <div class="article-modify">
+                        <a href="{% url 'Main:Dashboard' article_detail.article_id %}" class="anchor-link">Edit Post</a>
+                        <a href="{% url 'Main:Delete' article_detail.article_id %}" class="anchor-link">Delete Post</a>
+                    </div>
+                {% else %}
+                    By {{ article_detail.owner.first_name }} {{ article_detail.owner.last_name }} @{{article_detail.owner.username}}
+                {% endif %}
+            </div>
         </div>
     </section>
 {% endblock %}

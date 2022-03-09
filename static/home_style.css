@@ -75,6 +75,45 @@ div.article {
     /* text-decoration: none; */
     color: rgba(0, 0, 0, 0.678)
 }
+.Article-detail {
+    display: flex;
+    justify-content: center;
+}
+.Article-detail > div {
+    width: 80%;
+}
+.article-title {
+    margin:10px;
+    font-size: 50px;
+    font-weight: 400;
+}
+.article-subtitle {
+    margin:3px;
+    font-size: 20px;
+}
+span.article-date-pub {
+    font-size: 12px;
+    margin-left: 5px;
+    color:rgba(0, 0, 0, 0.76);
+}
+div.article-date-pub {
+    font-size: 15px;
+    margin-left: 5px;
+    color:rgba(0, 0, 0, 0.76);
+    margin-top: 6px;
+}
+.article-body {
+    text-align: justify;
+    margin: 10px;
+}
+.article-author {
+    margin: 20px 10px;
+    font-size: 20px;
+}
+.article-modify > a {
+    margin: 10px 0px !important;
+    font-size: 16px !important;
+}
 
 @keyframes intro {
     from {opacity: 0;}
